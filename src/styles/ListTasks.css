@@ -1,0 +1,9 @@
+.col-icon {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.col-icon i {
+    cursor: pointer;
+}

@@ -16,6 +16,7 @@ const FormTasks = ({ tasks, setTasks }) => {
       setTask("");
       setCategory("");
       setValidate(false);
+      console.log(tasks);
     }
 
   };
@@ -60,7 +61,7 @@ const FormTasks = ({ tasks, setTasks }) => {
         </Form.Control.Feedback>
       </FloatingLabel>
       <div className="d-grid mt-4">
-        <Button variant="secondary" size="lg" type="submit">
+        <Button size="lg" type="submit">
           Add task
         </Button>
       </div>
