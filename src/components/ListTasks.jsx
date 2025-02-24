@@ -1,31 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/ListTasks.css";
-import { ListGroup, Container, Row, Col } from "react-bootstrap";
+import { ListGroup, Form, FloatingLabel } from "react-bootstrap";
+import ItemTask from "./ItemTask";
 
 const ListTasks = ({ tasks, deleteTask }) => {
+  const [search, setSearch] = useState("");
+  const filteredTasks = tasks.filter(
+    (task) => task.category === search || search === ""
+  );
+
   return (
-    <ListGroup className="text-start mt-4">
-      {tasks.map((task, i) => (
-        <ListGroup.Item key={i} className="border-0 p-0">
-          <Container fluid={true}>
-            <Row>
-              <Col xs={10}>
-                <p className="fw-semibold mb-2 fs-5 ">{task.name}</p>
-                <p className="mb-2 fs-6 text-secondary">
-                  Category: {task.category}
-                </p>
-              </Col>
-              <Col xs={2} className="col-icon">
-                <i
-                  className="text-secondary fa-solid fa-trash fa-lg"
-                  onClick={() => deleteTask(i)}
-                ></i>
-              </Col>
-            </Row>
-          </Container>
-        </ListGroup.Item>
-      ))}
-    </ListGroup>
+    <>
+      {tasks.length > 0 && (
+        <FloatingLabel
+          controlId="floatingSelect"
+          label="Filter by category"
+          className="mt-4"
+        >
+          <Form.Select
+            aria-label="Category"
+            required
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          >
+            <option value="">All</option>
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+            <option value="Study">Study</option>
+          </Form.Select>
+        </FloatingLabel>
+      )}
+      <ListGroup className="text-start mt-4">
+        {filteredTasks.length != 0 ? (
+          filteredTasks.map((task, index) => (
+            <ItemTask
+              key={index}
+              task={task}
+              i={index}
+              deleteTask={deleteTask}
+            />
+          ))
+        ) : tasks.length > 0 && (
+          <p>No tasks found for this category</p>
+        )}
+      </ListGroup>
+    </>
   );
 };
 
