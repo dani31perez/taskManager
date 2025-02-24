@@ -7,8 +7,8 @@ import { Container } from "react-bootstrap";
 function App() {
   const [tasks, setTasks] = useState([]);
 
-	const deleteTask = (index) => {
-		const taskFilter = tasks.filter ((task,i) => index !== i);
+	const deleteTask = (deletedTask) => {
+		const taskFilter = tasks.filter ((task) => task.name !== deletedTask.name || task.category !== deletedTask.category);
 		setTasks(taskFilter);
 	}
 

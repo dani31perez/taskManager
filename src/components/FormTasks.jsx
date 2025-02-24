@@ -9,16 +9,25 @@ const FormTasks = ({ tasks, setTasks }) => {
   const handleSubmit = (e) => {
     const form = e.currentTarget;
     e.preventDefault();
-    if (form.checkValidity() === false){
-        setValidate(true);
+    if (form.checkValidity() === false) {
+      setValidate(true);
     } else {
+      const taskExists = tasks.some(
+        (t) =>
+          t.name.trim().toLowerCase() === task.trim().toLowerCase() &&
+          t.category === category
+      );
+
+      if (taskExists) {
+        alert("This task already exists in this category");
+        return;
+      }
+
       setTasks([...tasks, { name: task, category: category }]);
       setTask("");
       setCategory("");
       setValidate(false);
-      console.log(tasks);
     }
-
   };
 
   return (

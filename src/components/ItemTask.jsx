@@ -1,9 +1,9 @@
 import React from "react";
 import { Row, Col, ListGroup, Container } from "react-bootstrap";
 
-const ItemTask = ({ task, i, deleteTask}) => {
+const ItemTask = ({ task, deleteTask}) => {
   return (
-    <ListGroup.Item key={i} className="border-0 p-0">
+    <ListGroup.Item className="border-0 p-0">
       <Container fluid={true}>
         <Row>
           <Col xs={10}>
@@ -15,7 +15,7 @@ const ItemTask = ({ task, i, deleteTask}) => {
           <Col xs={2} className="col-icon">
             <i
               className="text-secondary fa-solid fa-trash fa-lg"
-              onClick={() => deleteTask(i)}
+              onClick={() => deleteTask(task)}
             ></i>
           </Col>
         </Row>

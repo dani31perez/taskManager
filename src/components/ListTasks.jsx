@@ -30,13 +30,12 @@ const ListTasks = ({ tasks, deleteTask }) => {
           </Form.Select>
         </FloatingLabel>
       )}
-      <ListGroup className="text-start mt-4">
+      <ListGroup className="text-start mt-4 overflow-auto" style={{maxHeight: "32vh"}}>
         {filteredTasks.length != 0 ? (
           filteredTasks.map((task, index) => (
             <ItemTask
               key={index}
               task={task}
-              i={index}
               deleteTask={deleteTask}
             />
           ))
